@@ -1,0 +1,27 @@
+:filename: manual/03_task_exportPPT.adoc
+ifndef::imagesdir[:imagesdir: ../images]
+
+= exportPPT
+
+IMPORTANT: Currently this feature is WINDOWS-only. https://github.com/docToolchain/docToolchain/issues/231[See related issue]
+
+
+include::feedback.adoc[]
+
+image::ea/Manual/exportPPT.png[]
+
+TIP: Blog-Post: https://rdmueller.github.io/PPT-as-asciidoc-editor/[Do more with Slides]
+
+== Source
+
+.exportPPT.gradle
+[source,groovy]
+----
+include::../../../scripts/exportPPT.gradle[tags=exportPPT]
+----
+
+.exportPPT.vbs
+[source,vbs]
+----
+include::../../../scripts/exportPPT.vbs[]
+----

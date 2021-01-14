@@ -1,0 +1,94 @@
+
+:imagesdir: images
+
+== docToolchain
+
+:url-ci-travis: https://travis-ci.org/doctoolchain/doctoolchain
+
+image:https://api.travis-ci.org/doctoolchain/doctoolchain.svg?branch=master[link={url-ci-travis}]
+
+
+[NOTE]
+====
+Corona/Covid19 is taking its toll.
+Time is short in these times and issues are not worked on.
+That is why I (rdmueller) have just introduced `sponsored` issues with higher priority.
+The label should help to explain why some issues will be preferred over others.
+If you want to sponsor an issue, just use the sponsor link on top of this page.
+====
+
+[IMPORTANT]
+====
+If you have used docToolchain in the past, please be aware that the master branch is undergoing some changes.
+
+If you are looking for a fresh version and are willing to accept changes in the configuration, the master branch is the right thing for you.
+
+If you are looking for what you are used to, then download https://github.com/docToolchain/docToolchain/releases[the V1.0.0 release]
+====
+
+image:https://travis-ci.org/docToolchain/docToolchain.svg?branch=master["Build Status", link="https://travis-ci.org/docToolchain/docToolchain"]
+image:https://opencollective.com/doctoolchain/backers/badge.svg["Backers on Open Collective"]
+image:https://opencollective.com/doctoolchain/sponsors/badge.svg["Sponsors on Open Collective"]
+
+=== create awesome docs!
+
+_docToolchain_ is an implementation of the http://www.writethedocs.org/guide/docs-as-code/[_docs-as-code_] approach for software architecture.
+The basis of docToolchain is the philosophy that software documentation should be treated in the same way as code together with the http://arc42.org[_arc42_] template for software architecture.
+
+https://docToolchain.github.io/docToolchain[read more...]
+
+image::https://doctoolchain.github.io/docToolchain/images/ea/Manual/Overview2.png[]
+
+https://doctoolchain.github.io/docToolchain/tests/[Integration Test Results], https://doctoolchain.github.io/docToolchain/htmlchecks/[htmlSanityCheck Test Results]
+
+=== Contributors
+
+This project exists thanks to all the people who contribute!
+
+image::https://opencollective.com/doctoolchain/contributors.svg?width=600&button=false[]
+
+See also the https://doctoolchain.github.io/docToolchain/#_acknowledgements_and_contributors[list of contributors] from the docs.
+
+Each contribution is highly valuable and appreciated, no matter how big it is - there are no small contributions.
+Even just fixing a typo or starring the project helps to promote it.
+
+I decided to give people and companies a chance to support this project.
+This is done through https://opencollective.com - the same service which https://asciidoctor.org/[Asciidoctor] uses.
+
+=== Companies who use docToolchain
+
+docToolchain is still one of the smaller open source projects,
+but some companies already fully embrace the docs-as-code approach through docToolchain.
+If your company uses docToolchain, then feel free to add your company's logo through a pull request.
+Please state in the PR that we are allowed to display the logo within all projects websites and documentation.
+
+[cols="1,2"]
+|===
+a| [link=https://www.tomtom.com]
+image::TomTomLogo.png[TomTom, width=50%]
+a| ## Deutsche Bahn - https://www.dbsystel.de/[DB Systel]
+|===
+
+=== Backers
+
+Thank you to all our backers!
+
+image::https://opencollective.com/doctoolchain/backers.svg?width=890["Become a Backer", link="https://opencollective.com/doctoolchain#backers"]
+
+=== Sponsors
+
+Support us by becoming a sponsor. Your logo will show up here with a link to your website.
+
+https://opencollective.com/doctoolchain#sponsors[Become a Sponsor]
+
+image::https://opencollective.com/doctoolchain/sponsor/0/avatar.svg["Sponsor", link="https://opencollective.com/doctoolchain/sponsor/0/website"]
+
+=== History of this project
+
+I just found an older https://twitter.com/RalfDMueller/status/668540860649349120[tweet] which reminded me of the roots and beginning of this project.
+It all began with two important parts.
+A script called asciidoc2confluence and some scripts to export diagrams from enterprise architect.
+
+The first one is linked in the tweet above and the first commit dates back to mid of 2015.
+Since then, many contributors have joined!
+Thanx for all of your contributions!

@@ -1,0 +1,31 @@
+import static groovy.io.FileType.*
+
+task prependFilename(
+        description: 'crawls through all AsciiDoc files and prepends the name of the current file',
+        group: 'docToolchain helper',
+) {
+    doLast {
+        File sourceFolder = new File("${docDir}/${inputPath}")
+        println("sourceFolder: " + sourceFolder.canonicalPath)
+        sourceFolder.traverse(type: FILES) { file ->
+            if (file.name ==~ '^.*(ad|adoc|asciidoc)$') {
+                if (file.name.split('[.]')[0] in ["feedback", "_feedback", "config", "_config"]) {
+                    println "skipped "+file.name
+                } else {
+                    def text = file.getText('utf-8')
+                    def name = file.canonicalPath - sourceFolder.canonicalPath
+                    name = name.replace("\\", "/").replaceAll("^/", "")
+                    if (text.contains(":filename:")) {
+                        text = text.replaceAll(":filename:.*", ":filename: $name")
+                        println "updated "+name
+                    } else {
+                        text = ":filename: $name\n" + text
+                        println "added   "+name
+                    }
+                    file.write(text,'utf-8')
+                }
+            }
+        }
+    }
+}
+

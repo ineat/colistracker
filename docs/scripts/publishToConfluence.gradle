@@ -1,0 +1,33 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven {
+            url mavenRepository
+        }
+    }
+    dependencies {
+        //for the exportJiraIssues Task
+        classpath 'org.codehaus.groovy.modules.http-builder:http-builder:0.7.2'
+        //for the renderToConfluence Task
+        classpath 'org.apache.httpcomponents:httpmime:4.5.10'
+        classpath 'org.jsoup:jsoup:1.12.1'
+    }
+}
+
+//tag::publishToConfluence[]
+task publishToConfluence(
+        description: 'publishes the HTML rendered output to confluence',
+        group: 'docToolchain'
+) {
+    doLast {
+        logger.info("docToolchain> docDir: "+docDir)
+
+        binding.setProperty('config',config)
+        binding.setProperty('docDir',docDir)
+        evaluate(new File(projectDir, 'scripts/asciidoc2confluence.groovy'))
+    }
+}
+//end::publishToConfluence[]
+project.afterEvaluate {
+    project.tasks.publishToConfluence.dependsOn generateHTML
+}

@@ -1,0 +1,83 @@
+//tag::convertToDocx[]
+task convertToDocx (
+        group: 'docToolchain',
+        description: 'converts file to .docx via pandoc. Needs pandoc installed.',
+        type: Exec
+) {
+    // All files with option `docx` in config.groovy is converted to docbook and then to docx.
+    def sourceFilesDocx = sourceFiles.findAll { 'docx' in it.formats }
+    sourceFilesDocx.each {
+        def sourceFile = it.file.replace('.adoc', '.xml')
+        def targetFile = sourceFile.replace('.xml', '.docx')
+
+        workingDir "$targetDir/docbook"
+        executable = "pandoc"
+
+        if(referenceDocFile?.trim()) {
+            args = ["-r","docbook",
+                    "-t","docx",
+                    "-o","../docx/$targetFile",
+                    "--reference-doc=${docDir}/${referenceDocFile}",
+                    sourceFile]
+        } else {
+            args = ["-r","docbook",
+                    "-t","docx",
+                    "-o","../docx/$targetFile",
+                    sourceFile]
+        }
+    }
+    doFirst {
+        new File("$targetDir/docx/").mkdirs()
+    }
+}
+//end::convertToDocx[]
+
+//tag::convertToEpub[]
+task convertToEpub (
+        group: 'docToolchain',
+        description: 'converts file to .epub via pandoc. Needs pandoc installed.',
+        type: Exec
+) {
+    // All files with option `epub` in config.groovy is converted to docbook and then to epub.
+    def sourceFilesEpub = sourceFiles.findAll { 'epub' in it.formats }
+    sourceFilesEpub.each {
+        def sourceFile = it.file.replace('.adoc', '.xml')
+        def targetFile = sourceFile.replace('.xml', '.epub')
+
+        workingDir "$targetDir/docbook"
+        executable = "pandoc"
+        args = ['-r','docbook',
+                '-t','epub',
+                '-o',"../epub/$targetFile",
+                sourceFile]
+    }
+    doFirst {
+        new File("$targetDir/epub/").mkdirs()
+    }
+}
+//end::convertToEpub[]
+project.afterEvaluate {
+    project.tasks.convertToDocx.dependsOn generateDocbook
+    project.tasks.convertToEpub.dependsOn generateDocbook
+}
+
+//tag::createReferenceDoc[]
+task createReferenceDoc (
+        group: 'docToolchain helper',
+        description: 'creates a docx file to be used as a format style reference in task convertToDocx. Needs pandoc installed.',
+        type: Exec
+) {
+    workingDir "$docDir"
+    executable = "pandoc"
+    args = ["-o", "${docDir}/${referenceDocFile}",
+            "--print-default-data-file",
+            "reference.docx"]
+    
+    doFirst {
+        if(!(referenceDocFile?.trim())) {
+            throw new GradleException("Option `referenceDocFile` is not defined in config.groovy or has an empty value.")
+        }
+    }   
+}
+//end::createReferenceDoc[]
+
