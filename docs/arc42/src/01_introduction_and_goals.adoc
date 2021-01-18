@@ -10,6 +10,10 @@ Describes the relevant requirements and the driving forces that software archite
 * relevant stakeholders and their expectations
 ****
 
+__Colis Tracker__ is an application for tracking packages from multiple providers. It allows the user to add new packages to track and see their status and history.
+
+In addition, __Colis Tracker__ is used to study and evaluate technology, patterns and frameworks. The functional requirements are simple enough to leave room for concentration on quality goals.
+
 === Requirements Overview
 
 [role="arc42help"]
@@ -30,6 +34,20 @@ If requirements documents exist this overview should refer to these documents.
 Keep these excerpts as short as possible. Balance readability of this document with potential redundancy w.r.t to requirements documents.
 ****
 
+The main purpose of __Colis Tracker__ is to track parcels and present their status and history in a useful way to the user.
+
+Main features :
+
+- Add new packages to track
+- Visualize parcels current statuses in near real-time
+- Visualize parcels history
+- Visualize archived parcels
+- Support as many tracking provider as possible
+
+The application is to be used by only one user.
+
+Tracking info should be retrieved using the providers APIs when available, or parse the providers tracking webpages.
+
 === Quality Goals
 
 [role="arc42help"]
@@ -44,6 +62,17 @@ If you as an architect do not know how the quality of your work will be judged â
 .Form
 A table with quality goals and concrete scenarios, ordered by priorities
 ****
+
+[options="header",cols="1,2"]
+|===
+|Quality|Motivation
+| Understandability| The functional requirements are simple enough to allow a simple, understandable solution that allows focus on learning.
+| Documentability | All choices should be documented to allow easy transfer of knowledge between members of the technical team.
+| Testability | The architecture should allow easy testingof all main building blocks
+
+|===
+
+
 
 === Stakeholders
 
@@ -67,9 +96,16 @@ These stakeholders determine the extent and the level of detail of your work and
 Table with role names, person names, and their expectations with respect to the architecture and its documentation.
 ****
 
-[options="header",cols="1,2,2"]
+
+The following list contains the most important personas for this application :
+
+[options="header",cols="1,2"]
 |===
-|Role/Name|Contact|Expectations
-| _<Role-1>_ | _<Contact-1>_ | _<Expectation-1>_
-| _<Role-2>_ | _<Contact-2>_ | _<Expectation-2>_
+|Role/Name|Expectations
+| DevOps Team | Learn about new ways to build, deploy and host modern applications
+| Developers  | Learn about new ways to develop modern applications.
+| Application Users | Looking for an open-source parcel tracking application which is self-hostable, and support as many providers as possible.
+| Germain Lefevbre  | --
 |===
+
+
