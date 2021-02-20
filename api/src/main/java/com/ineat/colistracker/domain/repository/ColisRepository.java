@@ -1,11 +1,15 @@
-package org.acme.domain.repository;
+package com.ineat.colistracker.domain.repository;
 
+import com.ineat.colistracker.domain.model.Colis;
 import io.smallrye.mutiny.Multi;
 import io.smallrye.mutiny.Uni;
-import org.acme.domain.model.Colis;
 
 public interface ColisRepository {
-    Uni<Void> create(Colis colis);
+    Uni<Colis> create(Colis colis);
 
     Multi<Colis> all();
+
+    Uni<Boolean> delete(Long id);
+
+    Uni<Colis> update(Colis colis);
 }

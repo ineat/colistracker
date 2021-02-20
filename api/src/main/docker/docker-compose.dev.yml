@@ -1,4 +1,11 @@
-version: '3.8'
+version: '2'
 
 services:
   database:
+    image: postgres
+    environment:
+      POSTGRES_USER: colistracker
+      POSTGRES_PASSWORD: colistracker
+      POSTGRES_DB: colistracker
+    ports:
+      - 5432:5432

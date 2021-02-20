@@ -1,7 +1,7 @@
-package org.acme.infrastructure.database.mapper;
+package com.ineat.colistracker.infrastructure.database.mapper;
 
-import org.acme.domain.model.Colis;
-import org.acme.infrastructure.database.entity.ColisEntity;
+import com.ineat.colistracker.domain.model.Colis;
+import com.ineat.colistracker.infrastructure.database.entity.ColisEntity;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "cdi")

@@ -1,11 +1,11 @@
-package org.acme.domain.model;
+package com.ineat.colistracker.domain.model;
 
 
 import java.time.LocalDateTime;
 
 
 public class Colis {
-    public String id;
+    public Long id;
     public String name;
     public String trackingId;
     public LocalDateTime created;
