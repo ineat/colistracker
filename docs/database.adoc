@@ -2,5 +2,6 @@
 
 [plantuml, db-model, png]
 ....
-
+@startuml
+class TrackingEvent
 ....

@@ -1,0 +1,19 @@
+{
+  "namespace": "com.ineat.colistracker.infrastructure.exchange.avro",
+  "name": "TrackingHistoryElement",
+  "type": "record",
+  "fields": [
+    {
+      "name": "id",
+      "type": "long"
+    },
+    {
+      "name":"description",
+      "type":"string"
+    },
+    {
+      "name": "time",
+      "type": "long"
+    }
+  ]
+}

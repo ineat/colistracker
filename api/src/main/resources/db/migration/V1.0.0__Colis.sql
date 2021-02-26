@@ -1,4 +1,4 @@
-CREATE TABLE colis
+CREATE TABLE tracking
 (
     id BIGSERIAL,
     name TEXT,

@@ -1,0 +1,49 @@
+{
+  "namespace": "com.ineat.colistracker.infrastructure.exchange.avro",
+  "type": "record",
+  "name": "TrackingUpdateEvent",
+  "fields": [
+    {
+      "name": "id",
+      "type": "long"
+    },
+    {
+      "name": "name",
+      "type": "string"
+    },
+    {
+      "name": "trackingId",
+      "type": "string"
+    },
+    {
+      "name": "created",
+      "type": "long"
+    },
+    {
+      "name": "updated",
+      "type": "long"
+    },
+    {
+      "name": "status",
+      "type": {
+        "name": "TrackingStatus",
+        "type": "enum",
+        "symbols": [
+          "ACTIVE",
+          "ARCHIVED"
+        ]
+      }
+    },
+    {
+      "name": "courier",
+      "type": "com.ineat.colistracker.infrastructure.exchange.avro.Courier"
+    },
+    {
+      "name": "history",
+      "type": {
+        "type": "array",
+        "items": "com.ineat.colistracker.infrastructure.exchange.avro.TrackingHistoryElement"
+      }
+    }
+  ]
+}
