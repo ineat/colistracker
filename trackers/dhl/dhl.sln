@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31019.35
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tracker", "Tracker\Tracker.csproj", "{48986A89-D468-4D07-9D86-869019B345F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{4564DFF9-63F5-4680-A06A-A1730BF21543}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{59E4DE34-B90A-4F58-AA58-5E3AFF5B840B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{48986A89-D468-4D07-9D86-869019B345F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48986A89-D468-4D07-9D86-869019B345F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48986A89-D468-4D07-9D86-869019B345F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48986A89-D468-4D07-9D86-869019B345F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4564DFF9-63F5-4680-A06A-A1730BF21543}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4564DFF9-63F5-4680-A06A-A1730BF21543}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4564DFF9-63F5-4680-A06A-A1730BF21543}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4564DFF9-63F5-4680-A06A-A1730BF21543}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59E4DE34-B90A-4F58-AA58-5E3AFF5B840B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59E4DE34-B90A-4F58-AA58-5E3AFF5B840B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59E4DE34-B90A-4F58-AA58-5E3AFF5B840B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59E4DE34-B90A-4F58-AA58-5E3AFF5B840B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {10BEAF32-CF30-4926-9EC0-F63EC3204548}
+	EndGlobalSection
+EndGlobal
