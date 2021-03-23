@@ -27,7 +27,7 @@ namespace Tracker
 
             services.AddAutoMapper(assembly);
             services.AddHealthChecks();
-            services.AddThirdParties(appSettings);
+            services.AddDependencies(appSettings);
         }
 
         public void Configure(IApplicationBuilder app, IMapper mapper)

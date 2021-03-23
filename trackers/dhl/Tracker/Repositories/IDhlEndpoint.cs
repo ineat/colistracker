@@ -1,4 +1,4 @@
-﻿using Refit;
+using Refit;
 using System.Threading.Tasks;
 using Tracker.Models.Dhl;
 
