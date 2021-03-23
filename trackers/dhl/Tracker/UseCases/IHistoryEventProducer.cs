@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using Tracker.Models.Dhl;
 
 namespace Tracker.UseCases
 {
-    interface IHistoryEventProducer
+    public interface IHistoryEventProducer
     {
+        Task Execute(string trackingNumber, ListShipmentWrapper? wrapper);
     }
 }

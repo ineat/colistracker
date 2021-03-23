@@ -9,6 +9,8 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Tracker.Configuration;
+using Tracker.Models.Kafka;
+using Tracker.UseCases;
 
 namespace Tracker.Infrastructure.Kafka
 {
@@ -18,7 +20,7 @@ namespace Tracker.Infrastructure.Kafka
         private readonly ILogger<Consumer> iLogger;
         private readonly IServiceScopeFactory iServiceScopeFactory;
 
-        protected Consumer(IOptions<AppSettings> appSettings, ILogger<Consumer> iLogger, IServiceScopeFactory iServiceScopeFactory)
+        public Consumer(IOptions<AppSettings> appSettings, ILogger<Consumer> iLogger, IServiceScopeFactory iServiceScopeFactory)
         {
             this.appSettings = appSettings.Value;
             this.iLogger = iLogger;
@@ -42,7 +44,7 @@ namespace Tracker.Infrastructure.Kafka
             try
             {
                 using IServiceScope scope = iServiceScopeFactory.CreateScope();
-                //await scope.ServiceProvider.GetServices<IAction<T>>().ToDictionary(action => action.Action)[message.Action].Execute(message);
+                await scope.ServiceProvider.GetRequiredService<IUpdateCommandConsumer>().Execute(message);
             }
             catch (Exception exc)
             {
@@ -81,7 +83,8 @@ namespace Tracker.Infrastructure.Kafka
 
             try
             {
-                while (!stoppingToken.IsCancellationRequested)
+                //while (!stoppingToken.IsCancellationRequested)
+                while (true)
                 {
                     try
                     {
