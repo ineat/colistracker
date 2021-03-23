@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package colistracker;
+
+// The tracking service definition.
+service Tracking {
+  // Get packet tracking status
+  rpc GetPacketStatus (TrackingRequest) returns (TrackingResponse) {}
+}
+
+// The request message containing the tracking ID
+message TrackingRequest {
+  string trackingNumber = 1;
+}
+
+message PackageActivity {
+  string location = 1;
+  string status = 2;
+  int32 date = 3;
+  int32 time = 4;
+}
+
+// The response message containing the tracking status
+message TrackingResponse {
+  string message = 1;
+  repeated PackageActivity activities = 2;
+}
