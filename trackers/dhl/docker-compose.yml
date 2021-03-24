@@ -56,7 +56,7 @@ services:
   #    KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
   #    KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka2:29093,PLAINTEXT_HOST://localhost:9093
   #    KAFKA_ADVERTISED_HOSTNAME: kafka2
-       
+      
   #kafka3:
   #  image: confluentinc/cp-kafka:latest
   #  hostname: kafka3
@@ -73,23 +73,23 @@ services:
   #    KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka3:29094,PLAINTEXT_HOST://localhost:9094
   #    KAFKA_ADVERTISED_HOSTNAME: kafka3
 
-  schema_registry:
-    container_name: schema_registry
-    hostname: schema_registry
-    image: confluentinc/cp-schema-registry:5.1.0
-    ports:
-      - "8081:8081"
-    environment:
-      SCHEMA_REGISTRY_HOST_NAME: schema_registry
-      SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: "zookeeper:2181"
-      SCHEMA_REGISTRY_ACCESS_CONTROL_ALLOW_METHODS: "GET,POST,PUT,OPTIONS"
-      SCHEMA_REGISTRY_ACCESS_CONTROL_ALLOW_ORIGIN: "*"
+  #schema_registry:
+  #  container_name: schema_registry
+  #  hostname: schema_registry
+  #  image: confluentinc/cp-schema-registry:5.1.0
+  #  ports:
+  #    - "8081:8081"
+  #  environment:
+  #    SCHEMA_REGISTRY_HOST_NAME: schema_registry
+  #    SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: "zookeeper:2181"
+  #    SCHEMA_REGISTRY_ACCESS_CONTROL_ALLOW_METHODS: "GET,POST,PUT,OPTIONS"
+  #    SCHEMA_REGISTRY_ACCESS_CONTROL_ALLOW_ORIGIN: "*"
 
-  schema_registry_ui:
-    container_name: schema_registry_ui
-    hostname: schema_registry_ui
-    image: landoop/schema-registry-ui
-    ports:
-      - "8082:8000"
-    environment:
-      SCHEMAREGISTRY_URL: "http://localhost:8081"
+  #schema_registry_ui:
+  #  container_name: schema_registry_ui
+  #  hostname: schema_registry_ui
+  #  image: landoop/schema-registry-ui
+  #  ports:
+  #    - "8082:8000"
+  #  environment:
+  #    SCHEMAREGISTRY_URL: "http://localhost:8081"

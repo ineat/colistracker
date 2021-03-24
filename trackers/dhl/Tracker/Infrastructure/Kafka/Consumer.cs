@@ -5,7 +5,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Tracker.Configuration;
@@ -39,10 +38,10 @@ namespace Tracker.Infrastructure.Kafka
         {
             iLogger.LogInformation($"Received message at {consumeResult.TopicPartitionOffset}: {consumeResult.Message.Value}, with group : {appSettings.KafkaConfiguration.ConsumerGroup}");
 
-            UpdateCommand message = JsonConvert.DeserializeObject<UpdateCommand>(consumeResult.Message.Value);
-
             try
             {
+                UpdateCommand message = JsonConvert.DeserializeObject<UpdateCommand>(consumeResult.Message.Value);
+
                 using IServiceScope scope = iServiceScopeFactory.CreateScope();
                 await scope.ServiceProvider.GetRequiredService<IUpdateCommandConsumer>().Execute(message);
             }
@@ -83,8 +82,7 @@ namespace Tracker.Infrastructure.Kafka
 
             try
             {
-                //while (!stoppingToken.IsCancellationRequested)
-                while (true)
+                while (!stoppingToken.IsCancellationRequested)
                 {
                     try
                     {
