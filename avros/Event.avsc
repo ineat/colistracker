@@ -1,0 +1,20 @@
+{
+    "type": "record",
+    "namespace": "Ineat.ColisTracker.Avros",
+    "name": "Event",
+    "fields": [
+        {
+            "name": "Status",
+            "type": "string"
+        },
+        {
+            "name": "Description",
+            "type": "string"
+        },
+        {
+            "name": "Timestamp",
+            "type": "long", 
+            "logicalType": "timestamp-millis"
+        }
+    ]
+}

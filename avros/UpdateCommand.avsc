@@ -1,0 +1,11 @@
+{
+    "namespace": "Ineat.ColisTracker.Avros",
+    "type": "record",
+    "name": "UpdateCommand",
+    "fields": [
+        {
+            "name": "Parcel",
+            "type": "Ineat.ColisTracker.Avros.Parcel"
+        }
+    ]
+}

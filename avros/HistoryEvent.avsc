@@ -1,0 +1,33 @@
+{
+    "namespace": "Ineat.ColisTracker.Avros",
+    "type": "record",
+    "name": "HistoryEvent",
+    "fields": [
+        {
+            "name": "Parcel",
+            "type": "Ineat.ColisTracker.Avros.Parcel"
+        },
+        {
+            "name": "Origin",
+            "type": "Ineat.ColisTracker.Avros.Address"
+        },
+        {
+            "name": "Destination",
+            "type": "Ineat.ColisTracker.Avros.Address"
+        },
+        {
+            "name": "Details",
+            "type": "Ineat.ColisTracker.Avros.Details"
+        },
+        {
+            "name": "Events",
+            "type": {
+                "type": "array",
+                "items": {
+                    "name": "Event",
+                    "type": "Ineat.ColisTracker.Avros.Event"
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "type": "record",
+    "namespace": "Ineat.ColisTracker.Avros",
+    "name": "UnitValue",
+    "fields": [
+        {
+            "name": "Value",
+            "type": "float"
+        },
+        {
+            "name": "Unit",
+            "type": "string"
+        }
+    ]
+}

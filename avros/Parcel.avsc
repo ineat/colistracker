@@ -1,0 +1,15 @@
+{
+    "type": "record",
+    "namespace": "Ineat.ColisTracker.Avros",
+    "name": "Parcel",
+    "fields": [
+        {
+            "name": "TrackingNumber",
+            "type": "string"
+        },
+        {
+            "name": "Carrier",
+            "type": "Ineat.ColisTracker.Avros.Carrier"
+        }
+    ]
+}

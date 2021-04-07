@@ -1,0 +1,35 @@
+{
+    "type": "record",
+    "namespace": "Ineat.ColisTracker.Avros",
+    "name": "Address",
+    "fields": [
+        {
+            "name": "CountryCode",
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        {
+            "name": "City",
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        {
+            "name": "ZipCode",
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        {
+            "name": "Localisation",
+            "type": [
+                "null",
+                "string"
+            ]
+        }
+    ]
+}
