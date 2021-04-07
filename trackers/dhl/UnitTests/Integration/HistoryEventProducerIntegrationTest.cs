@@ -1,21 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnitTests.Configuration;
-using Consumer.API.Interfaces;
 using FluentAssertions;
-using MarketConsumer.API.Enums;
-using MarketConsumer.API.Models;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
-using Recipe.API.Infrastructure;
-using Recipe.API.Models;
-using Recipe.UnitTests.Configuration;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using UnitTests.Configuration;
 using Xunit;
 
 

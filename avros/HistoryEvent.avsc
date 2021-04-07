@@ -1,33 +1,168 @@
-{
-    "namespace": "Ineat.ColisTracker.Avros",
-    "type": "record",
-    "name": "HistoryEvent",
-    "fields": [
-        {
-            "name": "Parcel",
-            "type": "Ineat.ColisTracker.Avros.Parcel"
-        },
-        {
-            "name": "Origin",
-            "type": "Ineat.ColisTracker.Avros.Address"
-        },
-        {
-            "name": "Destination",
-            "type": "Ineat.ColisTracker.Avros.Address"
-        },
-        {
-            "name": "Details",
-            "type": "Ineat.ColisTracker.Avros.Details"
-        },
-        {
-            "name": "Events",
-            "type": {
-                "type": "array",
-                "items": {
-                    "name": "Event",
-                    "type": "Ineat.ColisTracker.Avros.Event"
+[
+    {
+        "namespace": "Avros.HistoryEvent",
+        "type": "enum",
+        "doc": "Enumerates the set of allowable carriers.",
+        "name": "Carrier",
+        "symbols": [
+            "DHL",
+            "LA_POSTE",
+            "UPS"
+        ]
+    },
+    {
+        "type": "record",
+        "namespace": "Avros.HistoryEvent",
+        "name": "Parcel",
+        "fields": [
+            {
+                "name": "TrackingNumber",
+                "type": "string"
+            },
+            {
+                "name": "Carrier",
+                "type": "Avros.HistoryEvent.Carrier"
+            }
+        ]
+    },
+    {
+        "type": "record",
+        "namespace": "Avros.HistoryEvent",
+        "name": "Address",
+        "fields": [
+            {
+                "name": "CountryCode",
+                "type": [
+                    "null",
+                    "string"
+                ]
+            },
+            {
+                "name": "City",
+                "type": [
+                    "null",
+                    "string"
+                ]
+            },
+            {
+                "name": "ZipCode",
+                "type": [
+                    "null",
+                    "string"
+                ]
+            },
+            {
+                "name": "Localisation",
+                "type": [
+                    "null",
+                    "string"
+                ]
+            }
+        ]
+    },
+    {
+        "type": "record",
+        "namespace": "Avros.HistoryEvent",
+        "name": "UnitValue",
+        "fields": [
+            {
+                "name": "Value",
+                "type": "float"
+            },
+            {
+                "name": "Unit",
+                "type": "string"
+            }
+        ]
+    },
+    {
+        "type": "record",
+        "namespace": "Avros.HistoryEvent",
+        "name": "Details",
+        "fields": [
+            {
+                "name": "Pieces",
+                "type": [
+                    "null",
+                    "int"
+                ]
+            },
+            {
+                "name": "Weight",
+                "type": [
+                    "null",
+                    "Avros.HistoryEvent.UnitValue"
+                ]
+            },
+            {
+                "name": "Width",
+                "type": [
+                    "null",
+                    "Avros.HistoryEvent.UnitValue"
+                ]
+            },
+            {
+                "name": "Height",
+                "type": [
+                    "null",
+                    "Avros.HistoryEvent.UnitValue"
+                ]
+            },
+            {
+                "name": "Length",
+                "type": [
+                    "null",
+                    "Avros.HistoryEvent.UnitValue"
+                ]
+            }
+        ]
+    },
+    {
+        "namespace": "Avros.HistoryEvent",
+        "type": "record",
+        "name": "Wrapper",
+        "fields": [
+            {
+                "name": "Parcel",
+                "type": "Avros.HistoryEvent.Parcel"
+            },
+            {
+                "name": "Origin",
+                "type": "Avros.HistoryEvent.Address"
+            },
+            {
+                "name": "Destination",
+                "type": "Avros.HistoryEvent.Address"
+            },
+            {
+                "name": "Details",
+                "type": "Avros.HistoryEvent.Details"
+            },
+            {
+                "name": "Events",
+                "type": {
+                    "type": "array",
+                    "items": {
+                        "type": "record",
+                        "name": "Event",
+                        "fields": [
+                            {
+                                "name": "Status",
+                                "type": "string"
+                            },
+                            {
+                                "name": "Description",
+                                "type": "string"
+                            },
+                            {
+                                "name": "Timestamp",
+                                "type": "long", 
+                                "logicalType": "timestamp-millis"
+                            }
+                        ]
+                    }
                 }
             }
-        }
-    ]
-}
+        ]
+    }
+]

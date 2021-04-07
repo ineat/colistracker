@@ -1,11 +1,39 @@
-{
-    "namespace": "Ineat.ColisTracker.Avros",
-    "type": "record",
-    "name": "UpdateCommand",
-    "fields": [
-        {
-            "name": "Parcel",
-            "type": "Ineat.ColisTracker.Avros.Parcel"
-        }
-    ]
-}
+[
+    {
+        "namespace": "Avros.UpdateCommand",
+        "type": "enum",
+        "doc": "Enumerates the set of allowable carriers.",
+        "name": "Carrier",
+        "symbols": [
+            "DHL",
+            "LA_POSTE",
+            "UPS"
+        ]
+    },
+    {
+        "type": "record",
+        "namespace": "Avros.UpdateCommand",
+        "name": "Parcel",
+        "fields": [
+            {
+                "name": "TrackingNumber",
+                "type": "string"
+            },
+            {
+                "name": "Carrier",
+                "type": "Avros.UpdateCommand.Carrier"
+            }
+        ]
+    },
+    {
+        "namespace": "Avros.UpdateCommand",
+        "type": "record",
+        "name": "Wrapper",
+        "fields": [
+            {
+                "name": "Parcel",
+                "type": "Avros.UpdateCommand.Parcel"
+            }
+        ]
+    }
+]
