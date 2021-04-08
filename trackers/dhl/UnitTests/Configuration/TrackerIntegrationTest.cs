@@ -13,3 +13,4 @@ namespace UnitTests.Configuration
             FixtureInstance = new Fixture().Customize(new IgnoreVirtualMembersCustomisation());
         }
     }
+}

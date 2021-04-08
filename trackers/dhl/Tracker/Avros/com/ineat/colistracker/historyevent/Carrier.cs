@@ -5,7 +5,7 @@
 //    is regenerated
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace Avros.HistoryEvent
+namespace com.ineat.colistracker.historyevent
 {
 	using System;
 	using System.Collections.Generic;

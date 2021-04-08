@@ -5,7 +5,7 @@
 //    is regenerated
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace Avros.UpdateCommand
+namespace com.ineat.colistracker.updatecommand
 {
 	using System;
 	using System.Collections.Generic;

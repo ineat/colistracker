@@ -5,7 +5,7 @@
 //    is regenerated
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace Avros.HistoryEvent
+namespace com.ineat.colistracker.historyevent
 {
 	using System;
 	using System.Collections.Generic;
@@ -15,9 +15,16 @@ namespace Avros.HistoryEvent
 	
 	public partial class UnitValue : ISpecificRecord
 	{
-		public static Schema _SCHEMA = Schema.Parse("{\"type\":\"record\",\"name\":\"UnitValue\",\"namespace\":\"Avros.HistoryEvent\",\"fields\":[{\"" +
-				"name\":\"Value\",\"type\":\"float\"},{\"name\":\"Unit\",\"type\":\"string\"}]}");
+		public static Schema _SCHEMA = Schema.Parse("{\"type\":\"record\",\"name\":\"UnitValue\",\"namespace\":\"com.ineat.colistracker.historyev" +
+				"ent\",\"fields\":[{\"name\":\"Value\",\"doc\":\"Valeur, ex : 1.5\",\"type\":\"float\"},{\"name\":" +
+				"\"Unit\",\"doc\":\"Unité, ex : kg\",\"type\":\"string\"}]}");
+		/// <summary>
+		/// Valeur, ex : 1.5
+		/// </summary>
 		private float _Value;
+		/// <summary>
+		/// Unité, ex : kg
+		/// </summary>
 		private string _Unit;
 		public virtual Schema Schema
 		{
@@ -26,6 +33,9 @@ namespace Avros.HistoryEvent
 				return UnitValue._SCHEMA;
 			}
 		}
+		/// <summary>
+		/// Valeur, ex : 1.5
+		/// </summary>
 		public float Value
 		{
 			get
@@ -37,6 +47,9 @@ namespace Avros.HistoryEvent
 				this._Value = value;
 			}
 		}
+		/// <summary>
+		/// Unité, ex : kg
+		/// </summary>
 		public string Unit
 		{
 			get

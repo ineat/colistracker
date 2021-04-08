@@ -1,0 +1,31 @@
+[
+    {
+        "namespace": "com.ineat.colistracker.updatecommand",
+        "type": "enum",
+        "doc": "Enumération des transporteurs",
+        "name": "Carrier",
+        "symbols": [
+            "DHL",
+            "LA_POSTE",
+            "UPS"
+        ]
+    },
+    {
+        "type": "record",
+        "doc": "Identification du colis",
+        "namespace": "com.ineat.colistracker.updatecommand",
+        "name": "Parcel",
+        "fields": [
+            {
+                "name": "TrackingNumber",
+                "doc":"Numero de suivi, ex : 00340434292135100124",
+                "type": "string"
+            },
+            {
+                "name": "Carrier",
+                "doc":"Transporteur, ex : DHL",
+                "type": "com.ineat.colistracker.updatecommand.Carrier"
+            }
+        ]
+    }
+]

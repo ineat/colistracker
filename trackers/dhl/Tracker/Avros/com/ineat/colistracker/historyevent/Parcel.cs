@@ -5,7 +5,7 @@
 //    is regenerated
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace Avros.HistoryEvent
+namespace com.ineat.colistracker.historyevent
 {
 	using System;
 	using System.Collections.Generic;
@@ -15,12 +15,15 @@ namespace Avros.HistoryEvent
 	
 	public partial class Parcel : ISpecificRecord
 	{
-		public static Schema _SCHEMA = Schema.Parse("{\"type\":\"record\",\"name\":\"Parcel\",\"namespace\":\"Avros.HistoryEvent\",\"fields\":[{\"nam" +
-				"e\":\"TrackingNumber\",\"type\":\"string\"},{\"name\":\"Carrier\",\"type\":{\"type\":\"enum\",\"na" +
-				"me\":\"Carrier\",\"namespace\":\"Avros.HistoryEvent\",\"symbols\":[\"DHL\",\"LA_POSTE\",\"UPS\"" +
-				"]}}]}");
+		public static Schema _SCHEMA = Schema.Parse(@"{""type"":""record"",""name"":""Parcel"",""namespace"":""com.ineat.colistracker.historyevent"",""fields"":[{""name"":""TrackingNumber"",""doc"":""Numero de suivi, ex : 00340434292135100124"",""type"":""string""},{""name"":""Carrier"",""doc"":""Transporteur, ex : DHL"",""type"":{""type"":""enum"",""name"":""Carrier"",""namespace"":""com.ineat.colistracker.historyevent"",""symbols"":[""DHL"",""LA_POSTE"",""UPS""]}}]}");
+		/// <summary>
+		/// Numero de suivi, ex : 00340434292135100124
+		/// </summary>
 		private string _TrackingNumber;
-		private Avros.HistoryEvent.Carrier _Carrier;
+		/// <summary>
+		/// Transporteur, ex : DHL
+		/// </summary>
+		private com.ineat.colistracker.historyevent.Carrier _Carrier;
 		public virtual Schema Schema
 		{
 			get
@@ -28,6 +31,9 @@ namespace Avros.HistoryEvent
 				return Parcel._SCHEMA;
 			}
 		}
+		/// <summary>
+		/// Numero de suivi, ex : 00340434292135100124
+		/// </summary>
 		public string TrackingNumber
 		{
 			get
@@ -39,7 +45,10 @@ namespace Avros.HistoryEvent
 				this._TrackingNumber = value;
 			}
 		}
-		public Avros.HistoryEvent.Carrier Carrier
+		/// <summary>
+		/// Transporteur, ex : DHL
+		/// </summary>
+		public com.ineat.colistracker.historyevent.Carrier Carrier
 		{
 			get
 			{
@@ -64,7 +73,7 @@ namespace Avros.HistoryEvent
 			switch (fieldPos)
 			{
 			case 0: this.TrackingNumber = (System.String)fieldValue; break;
-			case 1: this.Carrier = (Avros.HistoryEvent.Carrier)fieldValue; break;
+			case 1: this.Carrier = (com.ineat.colistracker.historyevent.Carrier)fieldValue; break;
 			default: throw new AvroRuntimeException("Bad index " + fieldPos + " in Put()");
 			};
 		}

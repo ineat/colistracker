@@ -5,7 +5,7 @@
 //    is regenerated
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace Avros.HistoryEvent
+namespace com.ineat.colistracker.historyevent
 {
 	using System;
 	using System.Collections.Generic;
@@ -15,10 +15,22 @@ namespace Avros.HistoryEvent
 	
 	public partial class Address : ISpecificRecord
 	{
-		public static Schema _SCHEMA = Schema.Parse(@"{""type"":""record"",""name"":""Address"",""namespace"":""Avros.HistoryEvent"",""fields"":[{""name"":""CountryCode"",""type"":[""null"",""string""]},{""name"":""City"",""type"":[""null"",""string""]},{""name"":""ZipCode"",""type"":[""null"",""string""]},{""name"":""Localisation"",""type"":[""null"",""string""]}]}");
+		public static Schema _SCHEMA = Schema.Parse(@"{""type"":""record"",""name"":""Address"",""namespace"":""com.ineat.colistracker.historyevent"",""fields"":[{""name"":""CountryCode"",""doc"":""Code de pays, ex : DE"",""type"":[""null"",""string""]},{""name"":""City"",""doc"":""Ville, ex : Munich"",""type"":[""null"",""string""]},{""name"":""ZipCode"",""doc"":""Code postal, ex : 59115"",""type"":[""null"",""string""]},{""name"":""Localisation"",""doc"":""Rue / numéro / étage, ex : 30 rue du poivre"",""type"":[""null"",""string""]}]}");
+		/// <summary>
+		/// Code de pays, ex : DE
+		/// </summary>
 		private string _CountryCode;
+		/// <summary>
+		/// Ville, ex : Munich
+		/// </summary>
 		private string _City;
+		/// <summary>
+		/// Code postal, ex : 59115
+		/// </summary>
 		private string _ZipCode;
+		/// <summary>
+		/// Rue / numéro / étage, ex : 30 rue du poivre
+		/// </summary>
 		private string _Localisation;
 		public virtual Schema Schema
 		{
@@ -27,6 +39,9 @@ namespace Avros.HistoryEvent
 				return Address._SCHEMA;
 			}
 		}
+		/// <summary>
+		/// Code de pays, ex : DE
+		/// </summary>
 		public string CountryCode
 		{
 			get
@@ -38,6 +53,9 @@ namespace Avros.HistoryEvent
 				this._CountryCode = value;
 			}
 		}
+		/// <summary>
+		/// Ville, ex : Munich
+		/// </summary>
 		public string City
 		{
 			get
@@ -49,6 +67,9 @@ namespace Avros.HistoryEvent
 				this._City = value;
 			}
 		}
+		/// <summary>
+		/// Code postal, ex : 59115
+		/// </summary>
 		public string ZipCode
 		{
 			get
@@ -60,6 +81,9 @@ namespace Avros.HistoryEvent
 				this._ZipCode = value;
 			}
 		}
+		/// <summary>
+		/// Rue / numéro / étage, ex : 30 rue du poivre
+		/// </summary>
 		public string Localisation
 		{
 			get

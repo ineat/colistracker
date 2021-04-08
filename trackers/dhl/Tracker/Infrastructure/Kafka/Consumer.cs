@@ -1,4 +1,7 @@
+using com.ineat.colistracker.updatecommand;
 using Confluent.Kafka;
+using Confluent.Kafka.SyncOverAsync;
+using Confluent.SchemaRegistry.Serdes;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -34,16 +37,14 @@ namespace Tracker.Infrastructure.Kafka
             return Task.CompletedTask;
         }
 
-        private async Task Consume(IConsumer<string, string> consumer, ConsumeResult<string, string> consumeResult)
+        private async Task Consume(IConsumer<string, Parcel> consumer, ConsumeResult<string, Parcel> consumeResult)
         {
             iLogger.LogInformation($"Received message at {consumeResult.TopicPartitionOffset}: {consumeResult.Message.Value}, with group : {appSettings.KafkaConfiguration.ConsumerGroup}");
 
             try
             {
-                UpdateCommand message = JsonConvert.DeserializeObject<UpdateCommand>(consumeResult.Message.Value);
-
                 using IServiceScope scope = iServiceScopeFactory.CreateScope();
-                await scope.ServiceProvider.GetRequiredService<IUpdateCommandConsumer>().Execute(message);
+                await scope.ServiceProvider.GetRequiredService<IUpdateCommandConsumer>().Execute(consumeResult.Message.Value);
             }
             catch (Exception exc)
             {
@@ -60,7 +61,7 @@ namespace Tracker.Infrastructure.Kafka
             }
         }
 
-        private IConsumer<string, string> BuildConsumer()
+        private IConsumer<string, Parcel> BuildConsumer()
         {
             ConsumerConfig config = new ConsumerConfig
             {
@@ -69,14 +70,16 @@ namespace Tracker.Infrastructure.Kafka
                 AutoOffsetReset = AutoOffsetReset.Earliest
             };
 
-            return new ConsumerBuilder<string, string>(config).Build();
+            return new ConsumerBuilder<string, Parcel>(config)
+                .SetValueDeserializer(new AvroDeserializer<Parcel>(null).AsSyncOverAsync())
+                .Build();
         }
 
         public override Task StopAsync(CancellationToken cancellationToken) => Task.CompletedTask;
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            IConsumer<string, string> consumer = BuildConsumer();
+            IConsumer<string, Parcel> consumer = BuildConsumer();
 
             consumer.Subscribe(appSettings.KafkaConfiguration.UpdateCommandTopic);
 
@@ -86,7 +89,7 @@ namespace Tracker.Infrastructure.Kafka
                 {
                     try
                     {
-                        ConsumeResult<string, string> consumeResult = consumer.Consume(stoppingToken);
+                        ConsumeResult<string, Parcel> consumeResult = consumer.Consume(stoppingToken);
 
                         if (consumeResult.IsPartitionEOF)
                         {

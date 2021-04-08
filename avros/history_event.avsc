@@ -1,8 +1,8 @@
 [
     {
-        "namespace": "Avros.HistoryEvent",
+        "namespace": "com.ineat.colistracker.historyevent",
         "type": "enum",
-        "doc": "Enumerates the set of allowable carriers.",
+        "doc": "Enumération des transporteurs",
         "name": "Carrier",
         "symbols": [
             "DHL",
@@ -12,26 +12,31 @@
     },
     {
         "type": "record",
-        "namespace": "Avros.HistoryEvent",
+        "doc": "Identification du colis",
+        "namespace": "com.ineat.colistracker.historyevent",
         "name": "Parcel",
         "fields": [
             {
                 "name": "TrackingNumber",
+                "doc":"Numero de suivi, ex : 00340434292135100124",
                 "type": "string"
             },
             {
                 "name": "Carrier",
-                "type": "Avros.HistoryEvent.Carrier"
+                "doc":"Transporteur, ex : DHL",
+                "type": "com.ineat.colistracker.historyevent.Carrier"
             }
         ]
     },
     {
         "type": "record",
-        "namespace": "Avros.HistoryEvent",
+        "doc": "Adresse du colis à un moment T",
+        "namespace": "com.ineat.colistracker.historyevent",
         "name": "Address",
         "fields": [
             {
                 "name": "CountryCode",
+                "doc": "Code de pays, ex : DE",
                 "type": [
                     "null",
                     "string"
@@ -39,6 +44,7 @@
             },
             {
                 "name": "City",
+                "doc": "Ville, ex : Munich",
                 "type": [
                     "null",
                     "string"
@@ -46,6 +52,7 @@
             },
             {
                 "name": "ZipCode",
+                "doc": "Code postal, ex : 59115",
                 "type": [
                     "null",
                     "string"
@@ -53,6 +60,7 @@
             },
             {
                 "name": "Localisation",
+                "doc": "Rue / numéro / étage, ex : 30 rue du poivre",
                 "type": [
                     "null",
                     "string"
@@ -62,26 +70,31 @@
     },
     {
         "type": "record",
-        "namespace": "Avros.HistoryEvent",
+        "doc": "Représentation d'une valeur et de son unité",
+        "namespace": "com.ineat.colistracker.historyevent",
         "name": "UnitValue",
         "fields": [
             {
                 "name": "Value",
+                "doc": "Valeur, ex : 1.5",
                 "type": "float"
             },
             {
                 "name": "Unit",
+                "doc": "Unité, ex : kg",
                 "type": "string"
             }
         ]
     },
     {
         "type": "record",
-        "namespace": "Avros.HistoryEvent",
+        "doc": "Précision sur le ou les colis",
+        "namespace": "com.ineat.colistracker.historyevent",
         "name": "Details",
         "fields": [
             {
                 "name": "Pieces",
+                "doc": "Nombre de colis",
                 "type": [
                     "null",
                     "int"
@@ -89,56 +102,66 @@
             },
             {
                 "name": "Weight",
+                "doc": "Poids, ex : 1.5kg",
                 "type": [
                     "null",
-                    "Avros.HistoryEvent.UnitValue"
+                    "com.ineat.colistracker.historyevent.UnitValue"
                 ]
             },
             {
                 "name": "Width",
+                "doc": "Largeur, ex : 50cm",
                 "type": [
                     "null",
-                    "Avros.HistoryEvent.UnitValue"
+                    "com.ineat.colistracker.historyevent.UnitValue"
                 ]
             },
             {
                 "name": "Height",
+                "doc": "Hauteur, ex : 1.5m",
                 "type": [
                     "null",
-                    "Avros.HistoryEvent.UnitValue"
+                    "com.ineat.colistracker.historyevent.UnitValue"
                 ]
             },
             {
                 "name": "Length",
+                "doc": "Profondeur, ex : 300mm",
                 "type": [
                     "null",
-                    "Avros.HistoryEvent.UnitValue"
+                    "com.ineat.colistracker.historyevent.UnitValue"
                 ]
             }
         ]
     },
     {
-        "namespace": "Avros.HistoryEvent",
+        "namespace": "com.ineat.colistracker.historyevent",
+        "doc": "Encapsulation des details de la livraison du colis",
         "type": "record",
         "name": "Wrapper",
         "fields": [
             {
+                "doc": "Identification du colis",
                 "name": "Parcel",
-                "type": "Avros.HistoryEvent.Parcel"
+                "type": "com.ineat.colistracker.historyevent.Parcel"
             },
             {
+                "doc": "Adresse d'origine",
                 "name": "Origin",
-                "type": "Avros.HistoryEvent.Address"
+                "type": "com.ineat.colistracker.historyevent.Address"
             },
             {
+                "doc": "Adresse de destination",
                 "name": "Destination",
-                "type": "Avros.HistoryEvent.Address"
+                "type": "com.ineat.colistracker.historyevent.Address"
             },
             {
+                "doc": "Précision sur le ou les colis",
                 "name": "Details",
-                "type": "Avros.HistoryEvent.Details"
+                "type": "com.ineat.colistracker.historyevent.Details"
             },
             {
+                "doc": "Evenements relatifs à la livraison",
                 "name": "Events",
                 "type": {
                     "type": "array",
@@ -147,14 +170,17 @@
                         "name": "Event",
                         "fields": [
                             {
+                                "doc": "Statut, ex : pre-transit",
                                 "name": "Status",
                                 "type": "string"
                             },
                             {
+                                "doc": "Description, ex : The instruction data for this shipment have been provided by the sender to DHL electronically",
                                 "name": "Description",
                                 "type": "string"
                             },
                             {
+                                "doc": "Date du statut",
                                 "name": "Timestamp",
                                 "type": "long", 
                                 "logicalType": "timestamp-millis"

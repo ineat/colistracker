@@ -1,9 +1,9 @@
+using com.ineat.colistracker.updatecommand;
 using Microsoft.Extensions.Options;
 using Refit;
 using System.Threading.Tasks;
 using Tracker.Configuration;
 using Tracker.Models.Dhl;
-using Tracker.Models.Kafka;
 using Tracker.Repositories;
 
 namespace Tracker.UseCases
@@ -21,7 +21,7 @@ namespace Tracker.UseCases
             this.iHistoryEventProducer = iHistoryEventProducer;
         }
 
-        public async Task Execute(UpdateCommand command)
+        public async Task Execute(Parcel command)
         {
             ListShipmentWrapper? wrapper = null;
 

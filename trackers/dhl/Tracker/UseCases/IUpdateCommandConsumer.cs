@@ -1,10 +1,10 @@
+using com.ineat.colistracker.updatecommand;
 using System.Threading.Tasks;
-using Tracker.Models.Kafka;
 
 namespace Tracker.UseCases
 {
     public interface IUpdateCommandConsumer
     {
-        Task Execute(UpdateCommand command);
+        Task Execute(Parcel command);
     }
 }

@@ -5,7 +5,7 @@
 //    is regenerated
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace Avros.UpdateCommand
+namespace com.ineat.colistracker.updatecommand
 {
 	using System;
 	using System.Collections.Generic;
@@ -15,12 +15,15 @@ namespace Avros.UpdateCommand
 	
 	public partial class Parcel : ISpecificRecord
 	{
-		public static Schema _SCHEMA = Schema.Parse("{\"type\":\"record\",\"name\":\"Parcel\",\"namespace\":\"Avros.UpdateCommand\",\"fields\":[{\"na" +
-				"me\":\"TrackingNumber\",\"type\":\"string\"},{\"name\":\"Carrier\",\"type\":{\"type\":\"enum\",\"n" +
-				"ame\":\"Carrier\",\"namespace\":\"Avros.UpdateCommand\",\"symbols\":[\"DHL\",\"LA_POSTE\",\"UP" +
-				"S\"]}}]}");
+		public static Schema _SCHEMA = Schema.Parse(@"{""type"":""record"",""name"":""Parcel"",""namespace"":""com.ineat.colistracker.updatecommand"",""fields"":[{""name"":""TrackingNumber"",""doc"":""Numero de suivi, ex : 00340434292135100124"",""type"":""string""},{""name"":""Carrier"",""doc"":""Transporteur, ex : DHL"",""type"":{""type"":""enum"",""name"":""Carrier"",""namespace"":""com.ineat.colistracker.updatecommand"",""symbols"":[""DHL"",""LA_POSTE"",""UPS""]}}]}");
+		/// <summary>
+		/// Numero de suivi, ex : 00340434292135100124
+		/// </summary>
 		private string _TrackingNumber;
-		private Avros.UpdateCommand.Carrier _Carrier;
+		/// <summary>
+		/// Transporteur, ex : DHL
+		/// </summary>
+		private com.ineat.colistracker.updatecommand.Carrier _Carrier;
 		public virtual Schema Schema
 		{
 			get
@@ -28,6 +31,9 @@ namespace Avros.UpdateCommand
 				return Parcel._SCHEMA;
 			}
 		}
+		/// <summary>
+		/// Numero de suivi, ex : 00340434292135100124
+		/// </summary>
 		public string TrackingNumber
 		{
 			get
@@ -39,7 +45,10 @@ namespace Avros.UpdateCommand
 				this._TrackingNumber = value;
 			}
 		}
-		public Avros.UpdateCommand.Carrier Carrier
+		/// <summary>
+		/// Transporteur, ex : DHL
+		/// </summary>
+		public com.ineat.colistracker.updatecommand.Carrier Carrier
 		{
 			get
 			{
@@ -64,7 +73,7 @@ namespace Avros.UpdateCommand
 			switch (fieldPos)
 			{
 			case 0: this.TrackingNumber = (System.String)fieldValue; break;
-			case 1: this.Carrier = (Avros.UpdateCommand.Carrier)fieldValue; break;
+			case 1: this.Carrier = (com.ineat.colistracker.updatecommand.Carrier)fieldValue; break;
 			default: throw new AvroRuntimeException("Bad index " + fieldPos + " in Put()");
 			};
 		}
