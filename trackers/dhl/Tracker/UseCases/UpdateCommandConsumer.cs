@@ -1,4 +1,5 @@
-using com.ineat.colistracker.updatecommand;
+using AutoMapper;
+using com.ineat.colistracker.historyevent;
 using Microsoft.Extensions.Options;
 using Refit;
 using System.Threading.Tasks;
@@ -13,21 +14,23 @@ namespace Tracker.UseCases
         private readonly AppSettings appSettings;
         private readonly IDhlEndpoint iDhlEndpoint;
         private readonly IHistoryEventProducer iHistoryEventProducer;
+        private readonly IMapper iMapper;
 
-        public UpdateCommandConsumer(IOptions<AppSettings> appSettings, IDhlEndpoint iDhlEndpoint, IHistoryEventProducer iHistoryEventProducer)
+        public UpdateCommandConsumer(IOptions<AppSettings> appSettings, IDhlEndpoint iDhlEndpoint, IHistoryEventProducer iHistoryEventProducer, IMapper iMapper)
         {
             this.appSettings = appSettings.Value;
             this.iDhlEndpoint = iDhlEndpoint;
             this.iHistoryEventProducer = iHistoryEventProducer;
+            this.iMapper = iMapper;
         }
 
-        public async Task Execute(Parcel command)
+        public async Task Execute(string key, com.ineat.colistracker.updatecommand.Parcel command)
         {
-            ListShipmentWrapper? wrapper = null;
+            ListShipmentWrapper? apiResult = null;
 
             try
             {
-                wrapper = await iDhlEndpoint.Track(command.TrackingNumber, appSettings.TrackerConfiguration.ApiKey);
+                apiResult = await iDhlEndpoint.Track(command.TrackingNumber, appSettings.TrackerConfiguration.ApiKey);
             }
             catch (ApiException apiException)
             {
@@ -37,7 +40,8 @@ namespace Tracker.UseCases
                 }
             }
 
-            await iHistoryEventProducer.Execute(command.TrackingNumber, wrapper);
+            Wrapper wrapper = iMapper.Map<Wrapper>(apiResult);
+            await iHistoryEventProducer.Execute(key, wrapper);
         }
     }
 }

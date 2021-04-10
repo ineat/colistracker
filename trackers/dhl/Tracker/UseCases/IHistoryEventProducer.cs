@@ -1,10 +1,10 @@
+using com.ineat.colistracker.historyevent;
 using System.Threading.Tasks;
-using Tracker.Models.Dhl;
 
 namespace Tracker.UseCases
 {
     public interface IHistoryEventProducer
     {
-        Task Execute(string trackingNumber, ListShipmentWrapper? wrapper);
+        Task Execute(string key, Wrapper wrapper);
     }
 }

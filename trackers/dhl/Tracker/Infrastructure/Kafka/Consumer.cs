@@ -1,17 +1,16 @@
 using com.ineat.colistracker.updatecommand;
 using Confluent.Kafka;
 using Confluent.Kafka.SyncOverAsync;
+using Confluent.SchemaRegistry;
 using Confluent.SchemaRegistry.Serdes;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Tracker.Configuration;
-using Tracker.Models.Kafka;
 using Tracker.UseCases;
 
 namespace Tracker.Infrastructure.Kafka
@@ -37,7 +36,7 @@ namespace Tracker.Infrastructure.Kafka
             return Task.CompletedTask;
         }
 
-        private async Task Consume(IConsumer<string, Parcel> consumer, ConsumeResult<string, Parcel> consumeResult)
+        private async Task ProcessMessage(IConsumer<string, Parcel> consumer, ConsumeResult<string, Parcel> consumeResult)
         {
             iLogger.LogInformation($"Received message at {consumeResult.TopicPartitionOffset}: {consumeResult.Message.Value}, with group : {appSettings.KafkaConfiguration.ConsumerGroup}");
 
@@ -61,26 +60,31 @@ namespace Tracker.Infrastructure.Kafka
             }
         }
 
-        private IConsumer<string, Parcel> BuildConsumer()
+        private ConsumerConfig BuildConsumerConfig()
         {
-            ConsumerConfig config = new ConsumerConfig
+            return new ConsumerConfig
             {
                 GroupId = appSettings.KafkaConfiguration.ConsumerGroup,
                 BootstrapServers = appSettings.KafkaConfiguration.Brokers,
-                AutoOffsetReset = AutoOffsetReset.Earliest
+                AutoOffsetReset = AutoOffsetReset.Earliest,
             };
-
-            return new ConsumerBuilder<string, Parcel>(config)
-                .SetValueDeserializer(new AvroDeserializer<Parcel>(null).AsSyncOverAsync())
-                .Build();
+        }
+        private SchemaRegistryConfig BuildSchemaRegistryConfig()
+        {
+            return new SchemaRegistryConfig
+            {
+                Url = appSettings.KafkaConfiguration.SchemaRegistryUrl
+            };
         }
 
         public override Task StopAsync(CancellationToken cancellationToken) => Task.CompletedTask;
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            IConsumer<string, Parcel> consumer = BuildConsumer();
-
+            using CachedSchemaRegistryClient schemaRegistry = new CachedSchemaRegistryClient(BuildSchemaRegistryConfig());
+            using IConsumer<string, Parcel> consumer = new ConsumerBuilder<string, Parcel>(BuildConsumerConfig()).SetValueDeserializer(new AvroDeserializer<Parcel>(schemaRegistry).AsSyncOverAsync())
+                                                                                                                 .SetErrorHandler((_, e) => Console.WriteLine($"Error: {e.Reason}"))
+                                                                                                                 .Build();
             consumer.Subscribe(appSettings.KafkaConfiguration.UpdateCommandTopic);
 
             try
@@ -98,8 +102,7 @@ namespace Tracker.Infrastructure.Kafka
                             continue;
                         }
 
-                        await Consume(consumer, consumeResult);
-
+                        await ProcessMessage(consumer, consumeResult);
                     }
                     catch (ConsumeException exc)
                     {

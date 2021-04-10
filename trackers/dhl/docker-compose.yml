@@ -23,3 +23,5 @@ services:
       - "2181:2181"
       - "3030:3030"
       - "9581-9585:9581-9585"
+    environment:
+      - ADV_HOST=host.docker.internal

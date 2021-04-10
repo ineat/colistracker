@@ -5,6 +5,6 @@ namespace Tracker.UseCases
 {
     public interface IUpdateCommandConsumer
     {
-        Task Execute(Parcel command);
+        Task Execute(string key, Parcel command);
     }
 }
