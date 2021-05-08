@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "ineat-devops-colistracker-dev",
+  "private_key_id": "95b1fb326261c21ebb3626a24f0f73badcc5da96",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEuwIBADANBgkqhkiG9w0BAQEFAASCBKUwggShAgEAAoIBAQC7btSP+7ut+WfK\nCk3qsPA6JgnV4n0toosPlWJI1OJgUIpBrFNupOAzNt0XoOO5G5WhZaTZKnhkvE6X\nFE7PqaIUtNTCeaWLcyKzGEM7JuQinNf466yT5T6SPjKIS/iERxtDwpCAxN9L8MFD\nTetZk4Zx5bhlcNtyS4ZBlm/QAbB3PV3sagvGckEpbF2C1NJg/WZ0IBm6ApsgMN9N\nVDuN/tONgHaqZXfQt3fS3l79fgfJ0jzkNTtD5dxyqbTqu0kv/0fMxHelux/+5wva\njANrncl6Gn8tbxve/q42ZObkdcrAe3czEw3KS8NenzowPCcaIfKMeIwbKuaLPT2E\nmaLeTheRAgMBAAECgf83O0GH7DYx3fynnMG5FsqzV+IuFL+uYud3gB2mOJU8rH8R\nOyaaxBsM/G3KOK7iLS66kKkzFUDE7nh6LJHMv7/zOhY3+IC/xv3CqLOnCp7PVEiQ\nIWKJclQt5AYgA8MHt6xhG0RZranfRuKsYpmnm8FSbs8XlVoVJAw754irUtQdToWq\nCC0GtpVVqy2DjQ1Wq9sDTulevQroFOktm20vy+LphBXtPQJFOAYXd1qKttlnz2DJ\nUW0MmLlj6RVAk7mNQpr2YlUVMv4xywNsgxjBHrlSAC5JXh9UFi41rJEWIxtsYSdg\nslg9CnLgWiJvDzpQsDSB71MUnCAt/2y/6A8W9CECgYEA/FvQBofMZAcyJb95tA8m\nDqev6RskjoKMp+DnspQH3Yt3OqdE9ysgIQ5/3MBuSrND1bWxChX5t1NPIiYvZoah\nUuHiLz8Ow8TWRn37dieCqYK/pt7xE69ginVd0Fst48jCd+oVz7gl5YKzenNHXTEz\nipsEM0HLKSyFud94KOIGEiECgYEAviMwTZWPOM8UNd8AHg7otmePn8pDF11g9yAC\nIb+65uCk65w4sCB4b2CBel0RzhLVjar8ylbHzBYzbRlEEAl/W+CG7fLDAnJca4uQ\nRRjziV5OwGzeoe0om6StEdWUcr7tH3/LEcA+Qj/bl73+ogl0YcOXRsTPqbkTNZpA\nCBpbN3ECgYAkpnjp2eMXS+w+izZzrheK3VOw+R4wDEm9P+6mgtU5mb2xKQXdF8hM\nxLxRJSlfc/WQHhkeK97efxzpCr6rlzXqwZ+F2RSd3gJ4rmdM26QgVjrbU1mT0E6n\nDTCYyAU8JbYIkFimmEn4sSi7ye49XJ3trWHIx+9nhW3OduQOm/ThwQKBgAC1ONTR\nHbtkafrZXbK+83baY9qAckd//YBuChP+FsANTg/igQOG22vuvAyslAhkYY8pd895\nCz1jR8W8Nlio8GRzLY1tPfSgYF+2IU9gjGeShlCJFzsbGu+ZaVuLpAXZWCCp5SOn\nx5OPkU27U1tfFaPXipSk3vEO01d7v4lIL9bBAoGBAO/V3hMfIaio1r6v8wg8G4o7\nnvkTfukmbpk2sZy6ES4SKhq4OesvkLNLU69mxZNWoZzumU+bU8rTCvpfg1RP1GFB\niOO60uAjBXITyTeEqY5UyG8a5O6nOXBJDKu6zhjQPlE2qUVFSGVyCTwp6eMo15Bb\naNXZg524qZxQqx/rmpqR\n-----END PRIVATE KEY-----\n",
+  "client_email": "colistracker@ineat-devops-colistracker-dev.iam.gserviceaccount.com",
+  "client_id": "105850645838001272289",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/colistracker%40ineat-devops-colistracker-dev.iam.gserviceaccount.com"
+}
