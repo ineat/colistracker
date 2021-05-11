@@ -39,6 +39,15 @@ jobs:
       with:
         dotnet-version: 5.0.x
         
+    - name: install avro gen
+      run: sudo dotnet tool install -g Confluent.Apache.Avro.AvroGen
+        
+    - name: gen avros files history_event
+      run: sudo avrogen -s avros/trackers/history_event.avsc trackers/dhl/Tracker/Avros
+        
+    - name: gen avros files update_command
+      run: sudo avrogen -s avros/trackers/update_command.avsc trackers/dhl/Tracker/Avros
+        
     - name: Restore dependencies
       run: sudo dotnet restore trackers/dhl/dhl.sln
         
@@ -58,6 +67,15 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.x
+        
+    - name: install avro gen
+      run: sudo dotnet tool install -g Confluent.Apache.Avro.AvroGen
+        
+    - name: gen avros files history_event
+      run: sudo avrogen -s avros/trackers/history_event.avsc trackers/dhl/Tracker/Avros
+        
+    - name: gen avros files update_command
+      run: sudo avrogen -s avros/trackers/update_command.avsc trackers/dhl/Tracker/Avros
         
     - name: Restore dependencies
       run: sudo dotnet restore trackers/dhl/dhl.sln

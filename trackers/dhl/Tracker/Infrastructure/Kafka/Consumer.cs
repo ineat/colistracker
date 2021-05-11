@@ -43,7 +43,7 @@ namespace Tracker.Infrastructure.Kafka
             try
             {
                 using IServiceScope scope = iServiceScopeFactory.CreateScope();
-                await scope.ServiceProvider.GetRequiredService<IUpdateCommandConsumer>().Execute(consumeResult.Message.Value);
+                await scope.ServiceProvider.GetRequiredService<IUpdateCommandConsumer>().Execute(consumeResult.Message.Key, consumeResult.Message.Value);
             }
             catch (Exception exc)
             {
