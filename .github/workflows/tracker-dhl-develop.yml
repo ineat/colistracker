@@ -1,0 +1,102 @@
+name: tracker-dhl-develop
+on:
+  push:
+    branches:
+    - develop
+
+    paths:
+    - trackers/dhl/**
+    - avros/trackers/**
+    - .github/workflows/tracker-dhl-develop.yml
+  
+  pull_request:
+    branches:
+    - develop
+
+    paths:
+    - trackers/dhl/**
+    - avros/trackers/**
+    - .github/workflows/tracker-dhl-develop.yml
+
+env:
+  GITHUB_SHA: ${{ github.sha }} 
+  GITHUB_REF: ${{ github.ref }} 
+  GITHUB_BUILD: ${{ github.run_number }}
+  # TODO : en attente du naming dockerhub
+  IMAGE: ineat-devops-colistracker-dev/tracker-dhl
+  REGISTRY_HOSTNAME: eu.gcr.io
+
+jobs:
+
+  BuildPullRequest:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'pull_request' }}
+    steps:
+    - name: 'Checkout Github Action'
+      uses: actions/checkout@master
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+        
+    - name: Restore dependencies
+      run: sudo dotnet restore trackers/dhl/dhl.sln
+        
+    - name: build solution
+      run: sudo dotnet build trackers/dhl/dhl.sln --no-restore
+        
+    - name: unit test
+      run: sudo dotnet test trackers/dhl/dhl.sln --verbosity normal
+
+  BuildMainBranch:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name != 'pull_request' }}
+    steps:
+    - name: 'Checkout Github Action'
+      uses: actions/checkout@master
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+        
+    - name: Restore dependencies
+      run: sudo dotnet restore trackers/dhl/dhl.sln
+        
+    - name: build solution
+      run: sudo dotnet build trackers/dhl/dhl.sln --no-restore
+        
+    - name: unit test
+      run: sudo dotnet test trackers/dhl/dhl.sln --verbosity normal
+
+    # TODO : en attente des credentials dockerhub
+    # - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+      # with:
+        # version: '270.0.0'
+        # service_account_key: ${{ secrets.GCR_KEY }} 
+        
+    # - run: |
+        # # Set up docker to authenticate
+        # # via gcloud command-line tool.
+        # gcloud auth configure-docker
+        
+    # - name: Build
+      # run: |
+        # export TAG=`echo ${{ env.GITHUB_REF }}-${{ env.GITHUB_BUILD }} | awk -F/ '{print $NF}'`
+        # docker build -t "$REGISTRY_HOSTNAME"/"$IMAGE":"$TAG" \
+          # --file trackers/dhl/Tracker/Dockerfile \
+          # --build-arg GITHUB_SHA="$GITHUB_SHA" \
+          # --build-arg GITHUB_REF="$GITHUB_REF" ./trackers/dhl
+    
+    # - name: Publish
+      # id: publish
+      # run: |
+        # export TAG=`echo ${{ env.GITHUB_REF }}-${{ env.GITHUB_BUILD }} | awk -F/ '{print $NF}'`
+        # echo "::set-output name=TAG_TO_DEPLOY::""$TAG"
+        # docker push "$REGISTRY_HOSTNAME"/"$IMAGE":"$TAG"
+        # docker tag "$REGISTRY_HOSTNAME"/"$IMAGE":"$TAG" "$REGISTRY_HOSTNAME"/"$IMAGE":latest
+        # docker push "$REGISTRY_HOSTNAME"/"$IMAGE":latest        
+
+    # - uses: nick-invision/persist-action-data@v1
+      # with:
+        # data: ${{ steps.publish.outputs.TAG_TO_DEPLOY }}
+        # variable: TAG_TO_DEPLOY

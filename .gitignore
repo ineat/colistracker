@@ -214,5 +214,6 @@ samples/KeyManagement/FileSystem/dataprotectionkeys/
 samples/KeyManagement/FileSystem/signingkeys/
 
 # Custom
-*.API.xml
-blockchain/build
+trackers/dhl/**/.API.xml
+trackers/dhl/**/build
+trackers/dhl/**/Avros
