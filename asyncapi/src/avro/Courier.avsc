@@ -1,0 +1,9 @@
+{
+  "namespace": "com.ineat.colistracker.infrastructure.exchange.avro",
+  "name": "Courier",
+  "type": "enum",
+  "symbols": [
+    "LA_POSTE",
+    "DHL"
+  ]
+}

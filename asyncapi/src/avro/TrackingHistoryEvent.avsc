@@ -1,0 +1,22 @@
+{
+  "namespace": "com.ineat.colistracker.infrastructure.exchange.avro",
+  "type": "record",
+  "name": "TrackingHistoryEvent",
+  "fields": [
+    {
+      "name": "id",
+      "type": "long"
+    },
+    {
+      "name": "trackingId",
+      "type": "string"
+    },
+    {
+      "name": "history",
+      "type":{
+        "type": "array",
+        "items": "com.ineat.colistracker.infrastructure.exchange.avro.TrackingHistoryElement"
+      }
+    }
+  ]
+}

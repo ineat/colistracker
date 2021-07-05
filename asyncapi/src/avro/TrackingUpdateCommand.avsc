@@ -1,0 +1,19 @@
+{
+  "namespace": "com.ineat.colistracker.infrastructure.exchange.avro",
+  "type": "record",
+  "name": "TrackingAskUpdateEvent",
+  "fields": [
+    {
+      "name": "trackingId",
+      "type": "string"
+    },
+    {
+      "name": "postalCode",
+      "type": "string"
+    },
+    {
+      "name": "courier",
+      "type": "com.ineat.colistracker.infrastructure.exchange.avro.Courier"
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+asyncapi: 2.0.0
+info:
+  title: Colis Tracker Async API
+  version: '0.0.1'
+  description: |
+    The Colis Tracker App allows you to track your parcels accross a variety of couriers
+    ![](img/diagram.png)
+  contact:
+    name: "Ineat DevOps Community team"
+    email: "devops@ineat.fr"
+
+servers:
+  local:
+    url: localhost:9092
+    protocol: kafka
+    description: Local development cluster
+
+channels:
+  colis-tracker-tracking-update-event:
+    description: |
+      This topic allows to track tracking update events from the various couriers. Each event is an update from the courier
+      about a tracking
+    subscribe:
+      operationId: getTrackingUpdateEvent
+      summary: |
+        Consume an update event about a tracking
+      tags:
+        - name: internal
+      message:
+        $ref: '#/components/messages/trackingUpdateEvent'
+  colis-tracker-tracking-update-command:
+    description: |
+      This topic streams generic commands to ask trackers for updates.
+    publish:
+      operationId: askForUpdate
+      summary: |
+        Publish a command to ask an update for a tracking
+      message:
+        $ref: '#/components/messages/trackingUpdateCommand'
+  colis-tracker-tracking-history-event:
+    description: |
+      This topic contains update events on tracking history
+    publish:
+      operationId: pushHistoryUpdate
+      summary: |
+        Publish an update on a tracking history
+      message:
+        $ref: '#/components/messages/trackingHistoryEvent'
+
+components:
+  messages:
+    trackingUpdateEvent:
+      name: TrackingUpdateEvent
+      title: Tracking Update Event
+      summary: Tracking update event from a courier
+      schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+      payload:
+        $ref: '../avro/TrackingUpdateEvent.avsc'
+    trackingUpdateCommand:
+      name: TrackingUpdateCommand
+      title: Tracking Update Command
+      summary: Command to ask for an update on a tracking
+      schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+      payload:
+        $ref: '../avro/TrackingUpdateCommand.avsc'
+    trackingHistoryEvent:
+      name: TrackingHistoryEvent
+      title: Tracking History Event
+      summary: History update for a tracking
+      schemaFormat: 'application/vnd.apache.avro;version=1.9.0'
+      payload:
+        $ref: '../avro/TrackingHistoryEvent.avsc'
